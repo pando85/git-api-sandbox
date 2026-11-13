@@ -1,0 +1,16 @@
+name: ci
+on:
+  pull_request:
+  push:
+jobs:
+  pass:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ok
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          if [ -e FAIL ]; then echo "FAIL file present"; exit 1; fi
+          echo "no FAIL file"
